@@ -18,5 +18,5 @@ print(" [g] Exit program\n")
 select = str(input("Choose an option: ")).lower(git)
 # Perform the selected option
 # Oprion 1: Ask personal data for contact tracing to store the info
-# Option 2: Search, ask full name then display the record
+# Option 2: Search, ask full name then display the recordgi
 # Option 3: Ask the user if s/he wants to exit or retry
