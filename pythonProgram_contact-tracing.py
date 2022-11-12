@@ -3,8 +3,6 @@ print("PROGRAMMED BY: Crystal Jane Cadimas")
 print("Course/Year:   BSCOE 2-2")
 
 contact_tracing= {}
-contact_tracing1 = {}
-contact_tracing2 = {}
 
 # Display a menu option 
 def main():                     
@@ -14,21 +12,20 @@ def main():
         print(" \nWhat do you want to do?")
         print(" [1] Add a contact")
         print(" [2] Modify a contact")
-        print(" [3] Delete a contact")
+        print(" [3] Search a contact")
         print(" [4] Delete all contacts")
-        print(" [5] Display contact list")
-        print(" [6] Exit program\n")
+        print(" [5] Exit program\n")
     menuList()
     # Allow the user to select an item in the menu (check if valid)
     selected = int((input("Choose an option: ")))
 
     # Perform the selected option
-    if selected in (1,2,3,4,5,6,7):
+    if selected in (1,2,3,4,5):
         if selected == 1:
             def addContact():
                 print("\n\n============== ADD CONTACT ===============")
-                fullName = input("\nEnter your full name: ")
-                age = input("Enter your age: ")
+                fullName = input("\nEnter your full name: ").title()
+                age = int(input("Enter your age: "))
                 address = input("Enter your complete address: ")
                 contactNum = int(input("Enter your active contact number: "))
                 bodyTemp = int(input("Enter your body temperature: "))
@@ -55,7 +52,7 @@ def main():
                     print("Have a nice day :)")
                     exit()
                 else:
-                    print("\nInvalid input! Please try again!")
+                    print("\nInvalid Input! Please try again!\n")
                     main()     
             addContact()
 
@@ -76,14 +73,14 @@ def main():
                     print()
                     print(contact_tracing, "\n\n")
                     if change_contact == "a":
-                        newName = input("Enter new name: ")
+                        newName = input("Enter new name: ").title()
                         contact_tracing["Full Name"] = newName
                         print("Modifed name:", newName)
                         print()
                         print(contact_tracing)
 
                     elif change_contact == "b":
-                        newAge = input("Enter new age: ")
+                        newAge = int(input("Enter new age: "))
                         contact_tracing["Age"] = newAge
                         print("Modifed age:", newAge)
                         print()
@@ -97,14 +94,14 @@ def main():
                         print(contact_tracing)
 
                     elif change_contact == "d":
-                        newContactNum = input("Enter new active contact number: ")
+                        newContactNum = int(input("Enter new active contact number: "))
                         contact_tracing["Contact Number"] = newContactNum
                         print("Modifed contact number:", newContactNum)
                         print()
                         print(contact_tracing)
 
                     elif change_contact == "e":
-                        newBodyTemp = input("Enter new body temperature: ")
+                        newBodyTemp = int(input("Enter new body temperature: "))
                         contact_tracing["Body Temperature"] = newBodyTemp
                         print("Modifed body temperature:", newBodyTemp)
                         print()
@@ -118,8 +115,73 @@ def main():
                         print("Have a nice day :)")
                         exit()
                     else:
-                        print("\nInvalid input! Please try again!")
+                        print("\nInvalid Input! Please try again!\n")
                         main()
             modifyContact()
+        
+        elif selected == 3:
+            def searchContact():
+                print("\n\n============== SEARCH A CONTACT ===============")
 
+                search_name = str(input("\nEnter name to search: ")).title()
+                
+                if search_name in contact_tracing:
+                    print(contact_tracing.get('Full Name'))
+                else:
+                    print("\nNo user {}".format(search_name), "is found.")
+            searchContact()
+
+        elif selected == 4:
+            def deleteContact():
+                print("\n\n============== DELETE A CONTACT ===============")
+                print()
+                print(contact_tracing)
+
+                delete = input("\nAre you sure you want to delete all contacts, yes or no?: ")
+                if delete == "yes":
+                    contact_tracing.clear()
+                    print(contact_tracing)
+
+                    repeat = input("\n\nWould you like to continue, yes or no? ")
+                    if repeat.lower() == "yes":
+                        main()
+                    elif repeat.lower() == "no":
+                        print("\n\nThank you for using this program!")
+                        print("Have a nice day :)")
+                        exit()
+                    else:
+                        print("\nInvalid Input! Please try again!\n")
+                        main()
+                elif delete == "no":
+                    repeat = input("\n\nWould you like to continue, yes or no? ")
+                    if repeat.lower() == "yes":
+                        main()
+                    elif repeat.lower() == "no":
+                        print("\n\nThank you for using this program!")
+                        print("Have a nice day :)")
+                        exit()
+                    else:
+                        print("\nInvalid Input! Please try again!\n")
+                        main()
+                else:
+                    print("\nInvalid Input! Please try again!\n")
+                    main()
+            deleteContact()
+        
+        elif selected == 5:
+            def exitProg():
+                exitOption = input("\nAre you sure you want to close this program, yes or no?: ")
+                if exitOption == "yes":
+                    print("\n\nThank you for using this program!")
+                    print("Have a nice day :)")
+                    exit()
+                elif exitOption == "no":
+                    main()
+                else:
+                    print("\nInvalid Input! Please try again!\n")
+                    main()
+            exitProg()
+    else:
+        print("\nInvalid Input! Please try again!\n")
+        main()
 main()
