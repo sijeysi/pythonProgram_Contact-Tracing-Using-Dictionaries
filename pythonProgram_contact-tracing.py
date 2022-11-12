@@ -15,7 +15,7 @@ print(" [f] Display contact's length")
 print(" [g] Exit program\n")
 
 # Allow the user to select an item in the menu (check if valid)
-select = str(input("Choose an option: ")).lower()
+select = str(input("Choose an option: ")).lower(git)
 # Perform the selected option
 # Oprion 1: Ask personal data for contact tracing to store the info
 # Option 2: Search, ask full name then display the record
