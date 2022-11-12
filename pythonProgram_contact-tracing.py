@@ -2,7 +2,7 @@ print("\n")
 print("PROGRAMMED BY: Crystal Jane Cadimas")
 print("Course/Year:   BSCOE 2-2")
 
-contact_tracing= {}
+contact_tracing = {}
 
 # Display a menu option 
 def main():                     
@@ -24,7 +24,7 @@ def main():
         if selected == 1:
             def addContact():
                 print("\n\n============== ADD CONTACT ===============")
-                fullName = input("\nEnter your full name: ").title()
+                fullName = str(input("\nEnter your full name: ")).title()
                 age = int(input("Enter your age: "))
                 address = input("Enter your complete address: ")
                 contactNum = int(input("Enter your active contact number: "))
@@ -42,7 +42,8 @@ def main():
                     "\nAddress:", address,
                     "\nContact Number:", contactNum,
                     "\nBody Temperature:", bodyTemp)
-                print("\n",contact_tracing)
+                print()
+                print(contact_tracing)
 
                 repeat = input("\n\nWould you like to continue, yes or no? ")
                 if repeat.lower() == "yes":
@@ -124,11 +125,27 @@ def main():
                 print("\n\n============== SEARCH A CONTACT ===============")
 
                 search_name = str(input("\nEnter name to search: ")).title()
-                
-                if search_name in contact_tracing:
-                    print(contact_tracing.get('Full Name'))
-                else:
+
+                try:
+                    print("\nRESULT:")
+                    print("Full Name:", contact_tracing.get("Full Name"))
+                    print("Age:", contact_tracing.get("Age"))
+                    print("Address:", contact_tracing.get("Address"))
+                    print("Contact Number:", contact_tracing.get("Contact Number"))
+                    print("Body Temperature:", contact_tracing.get("Body Temperature"))
+                except ValueError():
                     print("\nNo user {}".format(search_name), "is found.")
+
+                repeat = input("\n\nWould you like to continue, yes or no? ")
+                if repeat.lower() == "yes":
+                    main()
+                elif repeat.lower() == "no":
+                    print("\n\nThank you for using this program!")
+                    print("Have a nice day :)")
+                    exit()
+                else:
+                   print("\nInvalid Input! Please try again!\n")
+                   main()
             searchContact()
 
         elif selected == 4:
